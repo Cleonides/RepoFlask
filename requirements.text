@@ -1,0 +1,6 @@
+#pip install -r .\requirements.text
+flask
+sendgrid
+Flask-Mail
+flask-paginate
+

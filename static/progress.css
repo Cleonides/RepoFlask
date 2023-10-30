@@ -1,0 +1,42 @@
+<script>
+
+    console.log("Opening the SSE connection")
+    var source = new EventSource("/progress");
+    source.onmessage = function(event) {
+        sent_data = JSON.parse(event.data)
+        console.log(sent_data)
+        var done = true
+        for (i in sent_data) {
+            console.log(i, sent_data[i])
+            // data received is in the form : {'0':value, '1':value}
+            qi = "#prog_"+i
+            $(qi).css('width', sent_data[i]+'%').attr('aria-valuenow', sent_data[i]);
+            lqi = qi+"_label"
+            $(lqi).text(sent_data[i]+'%');
+            if (sent_data[i] < 99)
+                done = false
+        }
+
+        if(done){
+            console.log("Closing the SSE connection")
+            source.close()
+        }
+
+    }
+
+ .pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+    </script>

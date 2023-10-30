@@ -51,6 +51,7 @@ params = {
 def retornar_cotacao_tempo_real():
     codigo_ativos = 'BBAS3', 'PETR4', 'RRRP3', 'ALSO3', 'ALPA4', 'ABEV3', 'ARZZ3', 'ASAI3'
     ativos = {}
+
     for codigo in codigo_ativos:
         codigo_ativo = f'{codigo}.SA'
         ativo = yf.download(codigo_ativo, start='2023-10-04', end='2023-10-05')
@@ -81,6 +82,7 @@ def retornar_cotacao_tempo_real():
             'variacao' : variacao_pontos_formatada + " ("+(variacao_percentual_formadata+"%)"),
             'cor_variacao': cor
         }
+        print(ativos)
 
     return ativos
 def formatar_numero(variacao, preco_dia_anterior, preco_fechamento_atual):

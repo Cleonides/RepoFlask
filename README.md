@@ -1,0 +1,2 @@
+# ProjetoFlask
+Repositorio padrão.
